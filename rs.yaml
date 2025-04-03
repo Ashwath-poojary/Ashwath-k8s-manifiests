@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cart-page-rs
+  namespace: ashwath-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      web: cart 
+  template: #it defines which application that have to deploy on a cluster (pod definition)
+    metadata:
+      labels:
+        web: cart
+    spec: #it defines the behaviour of the pod
+      containers: 
+        - name: cart-container
+          image: muralisocial123/cart-page-test:1.0
+          port:
+            - containerPort: 3000
+          
